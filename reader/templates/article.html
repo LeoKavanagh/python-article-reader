@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Article Reader
+{% endblock %}
+
+{% block content %}
+  <section>
+    <h1 align="lefft">Enter an article URL</h1>
+      <form action="" method="post" align="left">
+        <article>
+        <p> <input type="text"  style="width:100%" name="articleurl"> </p>
+        <p><button type="submit" style="width:100%">Submit</button></p>
+        </article>
+      </form>
+ </section>
+{% endblock %}
+
+<!-- 
+We don't want to have a sidebar on this page,
+so we overwrite the one from base.html with nothing
+-->
+

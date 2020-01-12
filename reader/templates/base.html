@@ -1,0 +1,73 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <!-- This is a block statement that we have called "title" -->
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="{{url_for('static', filename='css/normalize.min.css') }}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css') }}">
+
+        <script src="../static/js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                    <a href="{{ url_for('article') }}"><h1 class="title">Article Reader</h1></a>
+                <nav>
+                    <ul>
+                        <!--
+                        url_for takes the name of a view function as its argument
+                        returns the url to which that function is mapped
+                        in thermos.py we linked /add with add()
+                        -->
+                        <li><a href="{{ url_for('article') }}">Input</a></li>
+                        <li><a href="{{ url_for('play') }}">Play</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+
+                <article>
+                  {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                      <ul>
+                      {% for message in messages %}
+                        <li>{{ message }}</li>
+                      {% endfor %}
+                    {% endif %}
+                  {% endwith %}
+                </article>
+
+                {% block content %}
+                {% endblock %}
+
+                {% block sidebar %}
+                 <aside>
+                    <h3>About</h3>
+                    <p>This is a hobbyist project to practice Scala, Amazon Polly and Flask</p>
+                </aside>
+                {% endblock %}
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <p>Leo Kavanagh 2018</p>
+            </footer>
+        </div>
+
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jquery || document.write('<script src="{{ url_for('static', filename='js/vendor/jquery-1.11.0.min.js') }}"></script>
+    </body>
+</html>

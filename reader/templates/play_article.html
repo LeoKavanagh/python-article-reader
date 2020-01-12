@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+Article Reader
+{% endblock %}
+
+{% block content %}
+<img style="width: 100%" src="{{ url_for('static', filename='images/another-print-job.gif') }}"/>
+<audio controls style="width: 100%">
+    <source src="{{ url_for('static', filename='audio/article.mp3') }}" type="audio/mpeg">
+</audio>
+{% endblock %}
+
+<!-- 
+We don't want to have a sidebar on this page,
+so we overwrite the one from base.html with nothing
+-->
+{% block sidebar %}
+{% endblock %}
