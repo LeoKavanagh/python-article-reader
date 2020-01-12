@@ -107,7 +107,7 @@ def get_speech_streams(polly_client, chunked_sentences):
     return res
 
 
-def save_streams(streams, outfile='/home/leo/repos/python-article-reader/static/audio/article.mp3'):
+def save_streams(streams, outfile=os.path.join(os.path.dirname(__file__), 'static/audio/article.mp3')):
     """
     """
 
@@ -120,6 +120,7 @@ def save_streams(streams, outfile='/home/leo/repos/python-article-reader/static/
     with open(outfile, 'ab') as f:
         for stream in streams:
             f.write(stream['AudioStream'].read())
+            stream['AudioStream'].close()
 
 
 def run_article_reader(url):
